@@ -28,11 +28,7 @@ Run these shell commands in mongo shell:
 
 Write code to
 
-- create a database of your country name.   // db.createUser(
-   {
-     user: "India",
-   }
-);
-- check list of databases to see newly created database.  // db.getUsers()
-- check which database you are currently connected to ?   // db.getUsers()
+- create a database of your country name.                 code is     use india    db.createCollection('delhi')
+- check list of databases to see newly created database.  code is     show dbs
+- check which database you are currently connected to ?   code is     db
 
