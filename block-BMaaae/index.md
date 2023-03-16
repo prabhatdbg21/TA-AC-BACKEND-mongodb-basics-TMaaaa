@@ -28,7 +28,7 @@ Write code to:-
 
 - check whether a collection is capped or not? // db.khokho.isCapped()
 
-- drop all documents from `football` collection. // 
+- drop all documents from `football` collection. // db.football.remove({})
 - delete cricket collection completely. // db.cricket.drop()
 - delete sports database. //  db.dropDatabase()
 - check which database you are connected to ? // db           output  sports
