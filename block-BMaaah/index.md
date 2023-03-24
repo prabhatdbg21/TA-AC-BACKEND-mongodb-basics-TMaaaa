@@ -3,7 +3,11 @@ writeCode
 Write code to execute below expressions.
 
 1. Create a database named `blog`.
+// use blog 
+
 2. Create a collection called 'articles'.
+// db.blog.insertMany(users)
+
 3. Insert multiple documents(at least 3) into articles. It should have fields
 
 - title as string
@@ -33,23 +37,43 @@ Write code to execute below expressions.
 ```
 
 4. Find all the articles using `db.COLLECTION_NAME.find()`
+// db.blog.find()
+
 5. Find a document using \_id field.
+// db.blog.find({_id: ObjectId("641d6b4f95230f8f14d7154f")})
+
 6. 1. Find documents using title
+// db.blog.find({title: 'sports'})
+
 7. 2. Find documents using author's name field.
+// 
+
 8. Find document using a specific tag.
+//  db.blog.find({tags:'html'})
+//  db.blog.find({tags: {$in: ['html', 'css']}})
 
 9. Update title of a document using its \_id field.
+// db.blog.updateOne({_id: ObjectId("641d6b4f95230f8f14d7154f")}, {$set: {title: 'cricket'}})
+
 10. Update a author's name using article's title.
+//  
+
 11. rename details field to description from all articles in articles collection.
+//
+
 12. Add additional tag in a specific document.
+// db.blog.updateOne({title: 'bricks'}, {$push: {tags: 'mongosh'}})
 
 13. Update an article's title using $set and without $set.
+//  db.blog.updateOne({_id: ObjectId("641d6b4f95230f8f14d7154f")}, {$set: {title: 'cricket'}})
 
 - Write the differences here ?
 
 13. find an article using title and increment it's auhtor's age by 5.
+// db.blog.updateOne({title: 'bricks'},              )
 
 14. Delete a document using \_id field with `db.COLLECTION_NAME.remove()`.
+// db.blog.deleteOne({_id: ObjectId("641d6b4f95230f8f14d7154e")})
 
 // Sample data
 
@@ -168,6 +192,15 @@ db.users.insertMany([
 Insert above data into database to perform below queries:-
 
 - Find all males who play cricket.
+// db.users.find({gender: "Male",sports: "cricket"})
+
 - Update user with extra golf field in sports array whose name is "Steve Ortega".
+// db.users.update({ name: "Steve Ortega"},{$push: {sports: 'golf'}})
+
 - Find all users who play either 'football' or 'cricket'.
+// db.users.find({
+    sports: {$in: [ "football", "cricket" ]} 
+})
+
 - Find all users whose name includes 'ri' in their name.
+// 
