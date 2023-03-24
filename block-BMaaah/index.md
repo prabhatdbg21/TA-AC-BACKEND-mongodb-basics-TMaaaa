@@ -6,7 +6,7 @@ Write code to execute below expressions.
 // use blog 
 
 2. Create a collection called 'articles'.
-// db.blog.insertMany(users)
+// db.createCollection('articles')
 
 3. Insert multiple documents(at least 3) into articles. It should have fields
 
@@ -20,6 +20,46 @@ Write code to execute below expressions.
     - age
     - example author: {name: 'abc', email: 'abc@gmail', age: 25}
 - tags : Array of strings like ['html', 'css']
+
+```js
+var users = [
+    {
+        title: 'books',
+        createdAt: 22/03/23,
+        details: 'all books',
+        author: {
+            name: 'prabhat',
+            email: "abc@gmail.com",
+            age: 28
+        },
+        tags : ['html', 'css']
+    },
+    {
+        title: 'sports',
+        createdAt: 21/08/12,
+        details: 'all sports',
+        author: {
+            name: 'ankit',
+            email: "abc@gmail.com",
+            age: 30
+        },
+        tags : ['html', 'js']
+    },
+    {
+        title: 'bricks',
+        createdAt: 27/07/19,
+        details: 'all bricks',
+        author: {
+            name: 'ravi',
+            email: "abc@gmail.com",
+            age: 29
+        },
+        tags : ['js', 'css']
+    }
+]
+```
+
+// db.articles.insertMany(users)
 
 ```js
 // An article should look like in the database
@@ -37,43 +77,47 @@ Write code to execute below expressions.
 ```
 
 4. Find all the articles using `db.COLLECTION_NAME.find()`
-// db.blog.find()
+// db.articles.find()
 
 5. Find a document using \_id field.
-// db.blog.find({_id: ObjectId("641d6b4f95230f8f14d7154f")})
+// db.articles.findOne({_id: ObjectId("641db919b85849537371522d")})
 
 6. 1. Find documents using title
-// db.blog.find({title: 'sports'})
+// db.articles.findOne({title: 'sports'})
 
 7. 2. Find documents using author's name field.
-// 
+// db.articles.findOne({'author.name': 'ankit'})
 
 8. Find document using a specific tag.
-//  db.blog.find({tags:'html'})
-//  db.blog.find({tags: {$in: ['html', 'css']}})
+//  db.articles.find({tags:'html'})
+//  db.articles.find({tags: {$in: ['html', 'css']}})
 
 9. Update title of a document using its \_id field.
-// db.blog.updateOne({_id: ObjectId("641d6b4f95230f8f14d7154f")}, {$set: {title: 'cricket'}})
+//  db.articles.updateOne({_id: ObjectId("641db919b85849537371522d")}, {$set: {title: 'cricket'}})
 
 10. Update a author's name using article's title.
-//  
+//  db.articles.update({title: 'books'}, {$set: {'author.name': 'Anand'}})
 
 11. rename details field to description from all articles in articles collection.
-//
+//  db.articles.updateMany({}, {$rename: {details: "description"}})      
+/ {}  represent for all documents
+/ change the name of key details to description
 
 12. Add additional tag in a specific document.
-// db.blog.updateOne({title: 'bricks'}, {$push: {tags: 'mongosh'}})
+// db.articles.updateOne({title: 'bricks'}, {$push: {tags: 'mongosh'}})
 
 13. Update an article's title using $set and without $set.
-//  db.blog.updateOne({_id: ObjectId("641d6b4f95230f8f14d7154f")}, {$set: {title: 'cricket'}})
+//  db.articles.updateOne({_id: ObjectId("641db919b85849537371522d")}, {$set: {title: 'cricket'}})
 
 - Write the differences here ?
 
 13. find an article using title and increment it's auhtor's age by 5.
-// db.blog.updateOne({title: 'bricks'},              )
+// db.articles.update({title: 'books'}, {$inc: {'author.age': 5}})
+/ $inc for integer value increase by
+/ by 5 age will increase
 
 14. Delete a document using \_id field with `db.COLLECTION_NAME.remove()`.
-// db.blog.deleteOne({_id: ObjectId("641d6b4f95230f8f14d7154e")})
+// db.articles.deleteOne({title: 'books'})
 
 // Sample data
 
@@ -203,4 +247,6 @@ Insert above data into database to perform below queries:-
 })
 
 - Find all users whose name includes 'ri' in their name.
-// 
+// db.users.find({name: /ri/i})
+/    name: /ri/   represent name include ri
+/    i denote case sensitive ie search for ri or RI
